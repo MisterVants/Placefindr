@@ -1,0 +1,655 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2FEA0C8420170405BCF117DF /* Pods_Placefinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 265A48F39EA5D84B2BBA34B9 /* Pods_Placefinder.framework */; };
+		7607B02321356AB90084350A /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7607B02221356AB90084350A /* MapViewModel.swift */; };
+		7607B02521356B4A0084350A /* GoogleDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7607B02421356B4A0084350A /* GoogleDataProvider.swift */; };
+		7607B02721356CDB0084350A /* PlaceMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7607B02621356CDB0084350A /* PlaceMarker.swift */; };
+		761005392136CFE6005C3FDD /* SearchResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761005382136CFE6005C3FDD /* SearchResultsViewModel.swift */; };
+		765F609D213471D100160F13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765F609C213471D100160F13 /* AppDelegate.swift */; };
+		765F609F213471D100160F13 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765F609E213471D100160F13 /* MapViewController.swift */; };
+		765F60A4213471D100160F13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 765F60A3213471D100160F13 /* Assets.xcassets */; };
+		765F60A7213471D100160F13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 765F60A5213471D100160F13 /* LaunchScreen.storyboard */; };
+		765F60B2213471D100160F13 /* PlacefinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765F60B1213471D100160F13 /* PlacefinderTests.swift */; };
+		766C059C2135BC4400808C81 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766C059B2135BC4400808C81 /* LocationService.swift */; };
+		766C059E2135BF9900808C81 /* AppServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766C059D2135BF9900808C81 /* AppServices.swift */; };
+		7685B2682137009E00F319E7 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B2672137009E00F319E7 /* Action.swift */; };
+		7685B26A213700F200F319E7 /* AutocompletePredictionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B269213700F200F319E7 /* AutocompletePredictionCell.swift */; };
+		7685B26C2137012F00F319E7 /* PlaceTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B26B2137012F00F319E7 /* PlaceTypeCell.swift */; };
+		769B122B213614D1006D4BA7 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769B122A213614D0006D4BA7 /* ViewController+Extension.swift */; };
+		76C2CA512136B54A0017D6F3 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2CA502136B54A0017D6F3 /* SearchResultsTableViewController.swift */; };
+		76C7E3C521385A170014E06F /* GoogleApiDtos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C7E3C421385A170014E06F /* GoogleApiDtos.swift */; };
+		76C7E3C7213872940014E06F /* DynamicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C7E3C6213872940014E06F /* DynamicValue.swift */; };
+		76C7E3C92138729C0014E06F /* ValueAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C7E3C82138729C0014E06F /* ValueAction.swift */; };
+		850E87E2D3331478BCF82C73 /* Pods_PlacefinderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F2E759E899112FEE54E55AD /* Pods_PlacefinderTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		765F60AE213471D100160F13 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 765F6091213471D100160F13 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 765F6098213471D100160F13;
+			remoteInfo = Placefinder;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		265A48F39EA5D84B2BBA34B9 /* Pods_Placefinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Placefinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		56AC1C4C23DE927A8BD76517 /* Pods-PlacefinderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlacefinderTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlacefinderTests/Pods-PlacefinderTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7607B02221356AB90084350A /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		7607B02421356B4A0084350A /* GoogleDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleDataProvider.swift; sourceTree = "<group>"; };
+		7607B02621356CDB0084350A /* PlaceMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMarker.swift; sourceTree = "<group>"; };
+		761005382136CFE6005C3FDD /* SearchResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewModel.swift; sourceTree = "<group>"; };
+		765F6099213471D100160F13 /* Placefinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Placefinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		765F609C213471D100160F13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		765F609E213471D100160F13 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
+		765F60A3213471D100160F13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		765F60A6213471D100160F13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		765F60A8213471D100160F13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		765F60AD213471D100160F13 /* PlacefinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlacefinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		765F60B1213471D100160F13 /* PlacefinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacefinderTests.swift; sourceTree = "<group>"; };
+		765F60B3213471D100160F13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		766C059B2135BC4400808C81 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		766C059D2135BF9900808C81 /* AppServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppServices.swift; sourceTree = "<group>"; };
+		7685B2672137009E00F319E7 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		7685B269213700F200F319E7 /* AutocompletePredictionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompletePredictionCell.swift; sourceTree = "<group>"; };
+		7685B26B2137012F00F319E7 /* PlaceTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTypeCell.swift; sourceTree = "<group>"; };
+		769B122A213614D0006D4BA7 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		769B2C412134777E00151D69 /* Placefinder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Placefinder-Bridging-Header.h"; sourceTree = "<group>"; };
+		76C2CA502136B54A0017D6F3 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
+		76C7E3C421385A170014E06F /* GoogleApiDtos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleApiDtos.swift; sourceTree = "<group>"; };
+		76C7E3C6213872940014E06F /* DynamicValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicValue.swift; sourceTree = "<group>"; };
+		76C7E3C82138729C0014E06F /* ValueAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueAction.swift; sourceTree = "<group>"; };
+		7F2E759E899112FEE54E55AD /* Pods_PlacefinderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlacefinderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90C90A926ACDE4C954DFE89A /* Pods-Placefinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Placefinder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Placefinder/Pods-Placefinder.debug.xcconfig"; sourceTree = "<group>"; };
+		C9EC2F67EFC672D98AC0EF36 /* Pods-PlacefinderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlacefinderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlacefinderTests/Pods-PlacefinderTests.release.xcconfig"; sourceTree = "<group>"; };
+		FC2441D3F9EF5D8682472705 /* Pods-Placefinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Placefinder.release.xcconfig"; path = "Pods/Target Support Files/Pods-Placefinder/Pods-Placefinder.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		765F6096213471D100160F13 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FEA0C8420170405BCF117DF /* Pods_Placefinder.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		765F60AA213471D100160F13 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				850E87E2D3331478BCF82C73 /* Pods_PlacefinderTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01CEEED450DB2055D294EA47 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				265A48F39EA5D84B2BBA34B9 /* Pods_Placefinder.framework */,
+				7F2E759E899112FEE54E55AD /* Pods_PlacefinderTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		452E920D497B3D760E98C2DA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				90C90A926ACDE4C954DFE89A /* Pods-Placefinder.debug.xcconfig */,
+				FC2441D3F9EF5D8682472705 /* Pods-Placefinder.release.xcconfig */,
+				56AC1C4C23DE927A8BD76517 /* Pods-PlacefinderTests.debug.xcconfig */,
+				C9EC2F67EFC672D98AC0EF36 /* Pods-PlacefinderTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7607B02821356D3C0084350A /* View+Controller */ = {
+			isa = PBXGroup;
+			children = (
+				765F609E213471D100160F13 /* MapViewController.swift */,
+				76C2CA502136B54A0017D6F3 /* SearchResultsTableViewController.swift */,
+				7685B269213700F200F319E7 /* AutocompletePredictionCell.swift */,
+				7685B26B2137012F00F319E7 /* PlaceTypeCell.swift */,
+			);
+			path = "View+Controller";
+			sourceTree = "<group>";
+		};
+		7607B02921356D450084350A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7607B02221356AB90084350A /* MapViewModel.swift */,
+				761005382136CFE6005C3FDD /* SearchResultsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7607B02A21356D490084350A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7607B02621356CDB0084350A /* PlaceMarker.swift */,
+				76C7E3C421385A170014E06F /* GoogleApiDtos.swift */,
+				76C7E3CA213872A00014E06F /* Bindings */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		765F6090213471D100160F13 = {
+			isa = PBXGroup;
+			children = (
+				765F609B213471D100160F13 /* Placefinder */,
+				765F60B0213471D100160F13 /* PlacefinderTests */,
+				765F609A213471D100160F13 /* Products */,
+				452E920D497B3D760E98C2DA /* Pods */,
+				01CEEED450DB2055D294EA47 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		765F609A213471D100160F13 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				765F6099213471D100160F13 /* Placefinder.app */,
+				765F60AD213471D100160F13 /* PlacefinderTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		765F609B213471D100160F13 /* Placefinder */ = {
+			isa = PBXGroup;
+			children = (
+				765F609C213471D100160F13 /* AppDelegate.swift */,
+				766C059D2135BF9900808C81 /* AppServices.swift */,
+				769B122A213614D0006D4BA7 /* ViewController+Extension.swift */,
+				7607B02421356B4A0084350A /* GoogleDataProvider.swift */,
+				766C059B2135BC4400808C81 /* LocationService.swift */,
+				7607B02821356D3C0084350A /* View+Controller */,
+				7607B02921356D450084350A /* ViewModel */,
+				7607B02A21356D490084350A /* Model */,
+				765F60A3213471D100160F13 /* Assets.xcassets */,
+				765F60A5213471D100160F13 /* LaunchScreen.storyboard */,
+				765F60A8213471D100160F13 /* Info.plist */,
+				769B2C412134777E00151D69 /* Placefinder-Bridging-Header.h */,
+			);
+			path = Placefinder;
+			sourceTree = "<group>";
+		};
+		765F60B0213471D100160F13 /* PlacefinderTests */ = {
+			isa = PBXGroup;
+			children = (
+				765F60B1213471D100160F13 /* PlacefinderTests.swift */,
+				765F60B3213471D100160F13 /* Info.plist */,
+			);
+			path = PlacefinderTests;
+			sourceTree = "<group>";
+		};
+		76C7E3CA213872A00014E06F /* Bindings */ = {
+			isa = PBXGroup;
+			children = (
+				7685B2672137009E00F319E7 /* Action.swift */,
+				76C7E3C82138729C0014E06F /* ValueAction.swift */,
+				76C7E3C6213872940014E06F /* DynamicValue.swift */,
+			);
+			path = Bindings;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		765F6098213471D100160F13 /* Placefinder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 765F60B6213471D100160F13 /* Build configuration list for PBXNativeTarget "Placefinder" */;
+			buildPhases = (
+				EDE318E5FC24EF746F95F725 /* [CP] Check Pods Manifest.lock */,
+				765F6095213471D100160F13 /* Sources */,
+				765F6096213471D100160F13 /* Frameworks */,
+				765F6097213471D100160F13 /* Resources */,
+				5C3BC3CD8F6ADB123D285E18 /* [CP] Copy Pods Resources */,
+				6912A6A7C08993BB8D75A0F3 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Placefinder;
+			productName = Placefinder;
+			productReference = 765F6099213471D100160F13 /* Placefinder.app */;
+			productType = "com.apple.product-type.application";
+		};
+		765F60AC213471D100160F13 /* PlacefinderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 765F60B9213471D100160F13 /* Build configuration list for PBXNativeTarget "PlacefinderTests" */;
+			buildPhases = (
+				DC8F0EEB278E355A695AA53E /* [CP] Check Pods Manifest.lock */,
+				765F60A9213471D100160F13 /* Sources */,
+				765F60AA213471D100160F13 /* Frameworks */,
+				765F60AB213471D100160F13 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				765F60AF213471D100160F13 /* PBXTargetDependency */,
+			);
+			name = PlacefinderTests;
+			productName = PlacefinderTests;
+			productReference = 765F60AD213471D100160F13 /* PlacefinderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		765F6091213471D100160F13 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				TargetAttributes = {
+					765F6098213471D100160F13 = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+					};
+					765F60AC213471D100160F13 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 765F6098213471D100160F13;
+					};
+				};
+			};
+			buildConfigurationList = 765F6094213471D100160F13 /* Build configuration list for PBXProject "Placefinder" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 765F6090213471D100160F13;
+			productRefGroup = 765F609A213471D100160F13 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				765F6098213471D100160F13 /* Placefinder */,
+				765F60AC213471D100160F13 /* PlacefinderTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		765F6097213471D100160F13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				765F60A7213471D100160F13 /* LaunchScreen.storyboard in Resources */,
+				765F60A4213471D100160F13 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		765F60AB213471D100160F13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5C3BC3CD8F6ADB123D285E18 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Placefinder/Pods-Placefinder-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Placefinder/Pods-Placefinder-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6912A6A7C08993BB8D75A0F3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Placefinder/Pods-Placefinder-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Placefinder/Pods-Placefinder-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC8F0EEB278E355A695AA53E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PlacefinderTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EDE318E5FC24EF746F95F725 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Placefinder-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		765F6095213471D100160F13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				769B122B213614D1006D4BA7 /* ViewController+Extension.swift in Sources */,
+				76C7E3C521385A170014E06F /* GoogleApiDtos.swift in Sources */,
+				7685B2682137009E00F319E7 /* Action.swift in Sources */,
+				7607B02721356CDB0084350A /* PlaceMarker.swift in Sources */,
+				765F609F213471D100160F13 /* MapViewController.swift in Sources */,
+				7685B26A213700F200F319E7 /* AutocompletePredictionCell.swift in Sources */,
+				766C059E2135BF9900808C81 /* AppServices.swift in Sources */,
+				76C7E3C92138729C0014E06F /* ValueAction.swift in Sources */,
+				76C7E3C7213872940014E06F /* DynamicValue.swift in Sources */,
+				7607B02521356B4A0084350A /* GoogleDataProvider.swift in Sources */,
+				76C2CA512136B54A0017D6F3 /* SearchResultsTableViewController.swift in Sources */,
+				7685B26C2137012F00F319E7 /* PlaceTypeCell.swift in Sources */,
+				765F609D213471D100160F13 /* AppDelegate.swift in Sources */,
+				766C059C2135BC4400808C81 /* LocationService.swift in Sources */,
+				7607B02321356AB90084350A /* MapViewModel.swift in Sources */,
+				761005392136CFE6005C3FDD /* SearchResultsViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		765F60A9213471D100160F13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				765F60B2213471D100160F13 /* PlacefinderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		765F60AF213471D100160F13 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 765F6098213471D100160F13 /* Placefinder */;
+			targetProxy = 765F60AE213471D100160F13 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		765F60A5213471D100160F13 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				765F60A6213471D100160F13 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		765F60B4213471D100160F13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		765F60B5213471D100160F13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		765F60B7213471D100160F13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90C90A926ACDE4C954DFE89A /* Pods-Placefinder.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FXR83DW32N;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Placefinder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.mistervants.Placefinder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Placefinder/Placefinder-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "Pods/**";
+			};
+			name = Debug;
+		};
+		765F60B8213471D100160F13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC2441D3F9EF5D8682472705 /* Pods-Placefinder.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FXR83DW32N;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Placefinder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.mistervants.Placefinder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Placefinder/Placefinder-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "Pods/**";
+			};
+			name = Release;
+		};
+		765F60BA213471D100160F13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56AC1C4C23DE927A8BD76517 /* Pods-PlacefinderTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FXR83DW32N;
+				INFOPLIST_FILE = PlacefinderTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.mistervants.PlacefinderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Placefinder.app/Placefinder";
+			};
+			name = Debug;
+		};
+		765F60BB213471D100160F13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C9EC2F67EFC672D98AC0EF36 /* Pods-PlacefinderTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FXR83DW32N;
+				INFOPLIST_FILE = PlacefinderTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.mistervants.PlacefinderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Placefinder.app/Placefinder";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		765F6094213471D100160F13 /* Build configuration list for PBXProject "Placefinder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				765F60B4213471D100160F13 /* Debug */,
+				765F60B5213471D100160F13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		765F60B6213471D100160F13 /* Build configuration list for PBXNativeTarget "Placefinder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				765F60B7213471D100160F13 /* Debug */,
+				765F60B8213471D100160F13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		765F60B9213471D100160F13 /* Build configuration list for PBXNativeTarget "PlacefinderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				765F60BA213471D100160F13 /* Debug */,
+				765F60BB213471D100160F13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 765F6091213471D100160F13 /* Project object */;
+}
