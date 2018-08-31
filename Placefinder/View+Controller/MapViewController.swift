@@ -11,7 +11,7 @@ import GooglePlaces
 
 class MapViewController: UIViewController {
 
-    private static let defaultZoom: Float = 15.0
+    private static let defaultZoom: Float = GoogleZoomLevel.streets.rawValue
     
     var viewModel: MapViewModel
     
@@ -146,9 +146,20 @@ extension MapViewController: GMSMapViewDelegate {
     
     // Stop camera follow if user interact with the map
     func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
+//        print("will move with gesture: \(gesture)")
         if gesture {
             viewModel.stopAutomaticCameraUpdate()
         }
+    }
+    
+    // Stop camera follow if user taps a marker
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        viewModel.stopAutomaticCameraUpdate()
+        return false
+    }
+    
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        viewModel.searchResultViewModel.mapVisibleRegionDidChangeTo(mapView.projection.visibleRegion())
     }
     
     //    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {

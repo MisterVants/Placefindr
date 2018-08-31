@@ -7,15 +7,17 @@
 
 import Foundation
 import GooglePlaces
+import GoogleMaps
 
 protocol SearchResultsViewModel {
     
-    var updateTableResultsTrigger: Action {get}
+    var updateTableResults: Action {get}
     var numberOfResultSections: Int {get}
     
+    func mapVisibleRegionDidChangeTo(_ visibleRegion: GMSVisibleRegion)
     func updateSearchResults(partialString: String)
-    func cellTypeForRow() -> ResultCellType
-    func placeTypeForRowAt(_ indexPath: IndexPath) -> GooglePlaceType
+    func cellTypeForIndexPath(_ indexPath: IndexPath) -> ResultTableSection?
+    func placeSuggestionForRowAt(_ indexPath: IndexPath) -> GooglePlaceType
     func autocompletePredictionForRowAt(_ indexPath: IndexPath) -> GMSAutocompletePrediction
     func numberOfRowsInSection(_ section: Int) -> Int
     func didSelectRowAt(_ indexPath: IndexPath)
@@ -26,39 +28,65 @@ class SearchResultsViewModelImplementation: NSObject, SearchResultsViewModel {
     
     let fetcher: GMSAutocompleteFetcher
     
-    var updateTableResultsTrigger: Action
+    var updateTableResults: Action
     
-    var searchByTextTrigger: ValueAction<String>
+    var searchNearbyByText: ValueAction<String>
+    var searchNearbyByType: ValueAction<GooglePlaceType>
+    var searchByPlaceId: ValueAction<String>
     
-    var likelyPlacetypes: [GooglePlaceType]
+    
+    // these both will be on autocomplete
+    var suggestedPlacetypes: [GooglePlaceType]
     var autocompletePredictions: [GMSAutocompletePrediction]
     
     var numberOfResultSections: Int {
-        return 1
+        return ResultTableSection.count
     }
     
     override init() {
         self.fetcher = GMSAutocompleteFetcher(bounds: nil, filter: nil)
-        self.updateTableResultsTrigger = Action()
-        self.searchByTextTrigger = ValueAction<String>()
-        self.likelyPlacetypes = GooglePlaceType.likelyPlacetypes
+        
+        self.updateTableResults = Action()
+        self.searchNearbyByText = ValueAction<String>()
+        self.searchNearbyByType = ValueAction<GooglePlaceType>()
+        self.searchByPlaceId            = ValueAction<String>()
+        self.suggestedPlacetypes = []
         self.autocompletePredictions = []
         super.init()
         
         self.fetcher.delegate = self
     }
     
+    func mapVisibleRegionDidChangeTo(_ visibleRegion: GMSVisibleRegion) {
+        let northEast = visibleRegion.farRight
+        let southWest = visibleRegion.nearLeft
+        let autocompleteBounds = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
+        fetcher.autocompleteBounds = autocompleteBounds
+    }
+    
     func updateSearchResults(partialString: String) {
-//        fetcher.autocompleteBounds = GMSCoordinateBounds(coordinate: CLLocationCoordinate2D(), coordinate: CLLocationCoordinate2D())
-        fetcher.sourceTextHasChanged(partialString)
+        
+        if partialString.isEmpty {
+            suggestedPlacetypes = GooglePlaceType.allValues//likelyPlacetypes
+        } else {
+            suggestedPlacetypes = GooglePlaceType.allValues.filter {
+                $0.localizedTitle.range(of: partialString, options: [.caseInsensitive, .diacriticInsensitive]) != nil
+            }
+            fetcher.sourceTextHasChanged(partialString)
+        }
     }
     
-    func cellTypeForRow() -> ResultCellType {
-        return autocompletePredictions.isEmpty ? .placeType : .autocompletePlace
+    func cellTypeForIndexPath(_ indexPath: IndexPath) -> ResultTableSection? {
+        
+        guard let validSectionType = ResultTableSection(rawValue: indexPath.section) else {
+            print("[SearchResultsViewModel] Error @ \(#function): Unidentified table section with index: \(indexPath.section)")
+            return nil
+        }
+        return validSectionType
     }
     
-    func placeTypeForRowAt(_ indexPath: IndexPath) -> GooglePlaceType {
-        return likelyPlacetypes[indexPath.row]
+    func placeSuggestionForRowAt(_ indexPath: IndexPath) -> GooglePlaceType {
+        return suggestedPlacetypes[indexPath.row]
     }
     
     func autocompletePredictionForRowAt(_ indexPath: IndexPath) -> GMSAutocompletePrediction {
@@ -66,24 +94,38 @@ class SearchResultsViewModelImplementation: NSObject, SearchResultsViewModel {
     }
     
     func numberOfRowsInSection(_ section: Int) -> Int {
-        if !autocompletePredictions.isEmpty {
+        
+        guard let validSection = ResultTableSection(rawValue: section) else {
+            print("[SearchResultsViewModel] Error @ \(#function): Unidentified table section with index: \(section)")
+            return 0
+        }
+        
+        switch validSection {
+        case .placeType:
+            return suggestedPlacetypes.count
+        case .autocompleteSuggestion:
             return autocompletePredictions.count
-        } else {
-            return likelyPlacetypes.count
         }
     }
     
     func didSelectRowAt(_ indexPath: IndexPath) {
         print("Selected row at \(indexPath)")
-        // identify row to select correct query
-        // send to query
-//        autocompletePredictions[0].
         
+        guard let validSection = ResultTableSection(rawValue: indexPath.section) else {
+            print("[SearchResultsViewModel] Error @ \(#function): Selected and unidentified table section with index: \(indexPath.section)")
+            return
+        }
+        
+        switch validSection {
+        case .placeType:
+            searchNearbyByType.fire(suggestedPlacetypes[indexPath.row])
+        case .autocompleteSuggestion:
+            searchByPlaceId.fire(autocompletePredictions[indexPath.row].placeID ?? "")
+        }
     }
     
     func didPressSearchButton(_ searchString: String) {
-        // check if text corresponds to any placetype
-        searchByTextTrigger.fire(searchString)
+        searchNearbyByText.fire(searchString)
     }
 }
 
@@ -91,7 +133,7 @@ extension SearchResultsViewModelImplementation: GMSAutocompleteFetcherDelegate {
     
     func didAutocomplete(with predictions: [GMSAutocompletePrediction]) {
         autocompletePredictions = predictions
-        updateTableResultsTrigger.fire()
+        updateTableResults.fire()
     }
     
     func didFailAutocompleteWithError(_ error: Error) {
@@ -99,101 +141,35 @@ extension SearchResultsViewModelImplementation: GMSAutocompleteFetcherDelegate {
     }
 }
 
-
-
-enum GooglePlaceType: String {
-//    accounting
-//    airport
-//    amusement_park
-//    aquarium
-//    art_gallery
-//    atm
-//    bakery
-//    bank
-//    bar
-//    beauty_salon
-//    bicycle_store
-//    book_store
-//    bowling_alley
-//    bus_station
-//    cafe
-//    campground
-//    car_dealer
-//    car_rental
-//    car_repair
-//    car_wash
-//    casino
-//    cemetery
-//    church
-//    city_hall
-//    clothing_store
-//    convenience_store
-//    courthouse
-//    dentist
-//    department_store
-//    doctor
-//    electrician
-//    electronics_store
-//    embassy
-//    fire_station
-    case florist
-//    funeral_home
-//    furniture_store
-//    gas_station
-//    gym
-//    hair_care
-//    hardware_store
-//    hindu_temple
-//    home_goods_store
-    case hospital
-//    insurance_agency
-//    jewelry_store
-//    laundry
-//    lawyer
-//    library
-//    liquor_store
-//    local_government_office
-//    locksmith
-//    lodging
-//    meal_delivery
-//    meal_takeaway
-//    mosque
-//    movie_rental
-//    movie_theater
-//    moving_company
-//    museum
-//    night_club
-//    painter
-//    park
-//    parking
-//    pet_store
-    case pharmacy
-//    physiotherapist
-//    plumber
-//    police
-    case postOffice = "post_office"
-//    real_estate_agency
-//    restaurant
-//    roofing_contractor
-//    rv_park
-//    school
-//    shoe_store
-//    shopping_mall
-//    spa
-//    stadium
-//    storage
-//    store
-//    subway_station
-    case supermarket
-//    synagogue
-//    taxi_stand
-//    train_station
-//    transit_station
-//    travel_agency
-//    veterinary_care
-//    zoo
+enum ResultTableSection: Int {
+    case placeType
+    case autocompleteSuggestion
+    // Add more cases if needed for e.g. History or Bookmarks
     
-    static var likelyPlacetypes: [GooglePlaceType] {
-        return [.pharmacy, .supermarket, .hospital, .florist, .postOffice]
+    // Only needed to automatically count all cases in enum. In Swift 4.2, make CaseIterable and use the synthesized property
+    static var allValues: [ResultTableSection] {
+        return [.placeType, .autocompleteSuggestion]
+    }
+    
+    static var count: Int {
+        return allValues.count
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

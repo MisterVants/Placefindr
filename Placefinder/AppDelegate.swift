@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private(set) var appServices: AppServices!
 
-    static let googleApiKey = <#insert api-key here#>
+    static let googleApiKey = <#insert API key here#>
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         

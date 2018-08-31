@@ -20,9 +20,9 @@ struct PlaceDto: Decodable {
     let icon: String
     let id: String
     let name: String
+    let place_id: String
     let opening_hours: [String : Int]?
     let photos: [PhotoDto]?
-    let place_id: String?
     let plus_code: CodeDto?
     let reference: String?
     let scope: String? // if not present -> = GOOGLE

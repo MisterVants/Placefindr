@@ -63,7 +63,7 @@ class GoogleDataProvider {
             
             let results = response.result.flatMap { try JSONDecoder().decode(NearbyPlacesDto.self, from: $0) }
             if let placesDtoList = results.value?.results {
-                let placeList = placesDtoList.map { Place(fromGooglePlace: $0) }
+                let placeList = placesDtoList.map { Place(fromGooglePlaceDto: $0) }
                 completion(placeList)
             } else {
                 print("Error on response data")

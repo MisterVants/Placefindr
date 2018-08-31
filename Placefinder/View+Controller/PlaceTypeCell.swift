@@ -11,6 +11,8 @@ class PlaceTypeCell: UITableViewCell {
     
     static let reuseIdentifier = "PlaceTypeCell"
     
+    private let iconSize: Int = 24
+    
     var model: GooglePlaceType? {
         didSet {
             fillUI()
@@ -19,7 +21,6 @@ class PlaceTypeCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
-        textLabel?.text = "Place Type"
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -27,6 +28,8 @@ class PlaceTypeCell: UITableViewCell {
     }
     
     private func fillUI() {
-        textLabel?.text = model?.rawValue
+        guard let model = model else { return }
+        textLabel?.text = model.localizedTitle
+        imageView?.image = UIImage.iconImage(model.iconIdentifier, size: iconSize)
     }
 }

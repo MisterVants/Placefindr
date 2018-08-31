@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  Placefinder
+
+  Created by André Vants Soares de Almeida on 31/08/18.
+  
+*/
+
+
+// Google Place Types
+"airport"           = "Airport";
+"atm"               = "ATM";
+"bar"               = "Bar";
+"cafe"              = "Cafe";
+"florist"           = "Florist";
+"gas_station"       = "Gas Station";
+"gym"               = "Gym";
+"hospital"          = "Hospital";
+"laundry"           = "Laundry";
+"movie_theater"     = "Movie Theater";
+"night_club"        = "Night Club";
+"parking"           = "Parking";
+"pharmacy"          = "Pharmacy";
+"post_office"       = "Post Office";
+"restaurant"        = "Restaurant";
+"subway_station"    = "Subway Station";
+"supermarket"       = "Supermarket";
+"taxi_stand"        = "Taxi Stand";
+

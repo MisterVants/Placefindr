@@ -28,7 +28,7 @@ class SearchResultsTableViewController: UITableViewController {
         tableView.register(PlaceTypeCell.self, forCellReuseIdentifier: PlaceTypeCell.reuseIdentifier)
         tableView.register(AutocompletePredictionCell.self, forCellReuseIdentifier: AutocompletePredictionCell.reuseIdentifier)
         
-        viewModel.updateTableResultsTrigger.bind { [weak self] in
+        viewModel.updateTableResults.bind { [weak self] in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
@@ -45,23 +45,23 @@ class SearchResultsTableViewController: UITableViewController {
         return viewModel.numberOfRowsInSection(section)
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ""//HEADER \(section)"
-    }
+    // Probably not needed
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return ""//HEADER \(section)"
+//    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 50 // not done yet
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // this here
-//        guard let section = ResultCellType(rawValue: indexPath.section) else { return UITableViewCell() }
-        let section = viewModel.cellTypeForRow()
+        guard let cellType = viewModel.cellTypeForIndexPath(indexPath) else { return UITableViewCell() }
         
-        switch section {
+        switch cellType {
         case .placeType:
             return cellForPlaceTypeSectionForRowAt(indexPath)
-        case .autocompletePlace:
+        case .autocompleteSuggestion:
             return cellForAutocompleteResultSectionForRowAt(indexPath)
         }
     }
@@ -72,7 +72,7 @@ class SearchResultsTableViewController: UITableViewController {
     
     private func cellForPlaceTypeSectionForRowAt(_ indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PlaceTypeCell.reuseIdentifier) as! PlaceTypeCell
-        cell.model = viewModel.placeTypeForRowAt(indexPath)
+        cell.model = viewModel.placeSuggestionForRowAt(indexPath)
         return cell
     }
     
@@ -86,7 +86,7 @@ class SearchResultsTableViewController: UITableViewController {
 extension SearchResultsTableViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        
+        print("update search results text: \(searchController.searchBar.text)") // remove this 
         // Send partial string to autocomplete query
         let queryString = searchController.searchBar.text ?? ""
         viewModel.updateSearchResults(partialString: queryString)
@@ -121,11 +121,7 @@ extension SearchResultsTableViewController: UISearchBarDelegate {
 
 
 
-enum ResultCellType: Int {
-    case placeType
-    case autocompletePlace
-    // maybe history?
-}
+
 
 
 

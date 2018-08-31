@@ -17,7 +17,6 @@ protocol MapViewModel {
     var moveMapCamera: ValueAction<CLLocationCoordinate2D> {get}
     var reloadMapMarkers: ValueAction<[PlaceMarker]> {get}
     var dismissSearchController: Action {get}
-//    func queryForNearbyPlaces(ofType type: GooglePlaceType)
     
     func startAutomaticCameraUpdate()
     func stopAutomaticCameraUpdate()
@@ -28,11 +27,10 @@ class MapViewModelImplementation: MapViewModel {
     let mapModel: MapModel
     
     let dataProvider: GoogleDataProvider
-//    let locationService: LocationService
     
     let placesClient: GMSPlacesClient
     
-    let searchRadius: Double = 1000
+    
     
     var searchResultViewModel: SearchResultsViewModel!
     
@@ -41,6 +39,7 @@ class MapViewModelImplementation: MapViewModel {
     var reloadMapMarkers: ValueAction<[PlaceMarker]>
     var dismissSearchController: Action
     
+    private let defaultSearchRadius: Double = 1000
 
     private var isAutoUpdatingCamera: Bool
     
@@ -59,7 +58,9 @@ class MapViewModelImplementation: MapViewModel {
         self.isAutoUpdatingCamera = true
         
         let resultsViewModel = SearchResultsViewModelImplementation()
-        resultsViewModel.searchByTextTrigger.bind { [weak self] in self?.queryNearbyByText($0) }
+        resultsViewModel.searchNearbyByText.bind { [weak self] in self?.queryNearbyByText($0) }
+        resultsViewModel.searchNearbyByType.bind { [weak self] in self?.queryNearbyByPlaceType($0) }
+        resultsViewModel.searchByPlaceId.bind { [weak self] in self?.queryByPlaceId($0) }
         self.searchResultViewModel = resultsViewModel
         
         self.mapModel.currentLocation.bind { [weak self] in self?.userLocationDidChange($0) }
@@ -87,7 +88,7 @@ class MapViewModelImplementation: MapViewModel {
         
         let coordinate = mapModel.currentLocation.value.coordinate
         
-        dataProvider.fetchPlacesNearby(coordinate, radius: 1000, keyword: text) { placeData in
+        dataProvider.fetchPlacesNearby(coordinate, radius: defaultSearchRadius, keyword: text) { placeData in
             if let placeList = placeData {
                 let markers = self.mapModel.makeMarkersFromPlaces(placeList)
                 self.reloadMapMarkers.fire(markers)
@@ -99,44 +100,46 @@ class MapViewModelImplementation: MapViewModel {
     
     func queryNearbyByPlaceType(_ type: GooglePlaceType) {
         
+        print("Map View Model querying by type: \(type)")
+        
+        dismissSearchController.fire()
+        
+        let coordinate = mapModel.currentLocation.value.coordinate
+        
+        dataProvider.fetchPlacesNearby(coordinate, radius: defaultSearchRadius, type: type) { placeData in
+            if let placeList = placeData {
+                let markers = self.mapModel.makeMarkersFromPlaces(placeList)
+                self.reloadMapMarkers.fire(markers)
+            } else {
+                // nil return
+            }
+        }
+    }
+    
+    func queryByPlaceId(_ placeId: String) {
+        
+        dismissSearchController.fire()
+        
+        placesClient.lookUpPlaceID(placeId) { placeData, error in
+            if let gmsPlace = placeData {
+                let place = Place(fromGMSPlace: gmsPlace)
+                let marker = self.mapModel.makeMarkersFromPlaces([place])
+                self.reloadMapMarkers.fire(marker)
+                self.moveMapCamera.fire(place.coordinate)
+            } else if let error = error {
+                print("\(error)")
+                // nil return
+            }
+        }
     }
     
     private func userLocationDidChange(_ location: CLLocation) {
         if isAutoUpdatingCamera {
-//            setMapCamera.fire(location.coordinate)
             moveMapCamera.fire(location.coordinate)
         }
     }
 }
 
-class MapModel {
-    
-    var currentLocation: Dynamic<CLLocation>
-    
-    var currentPlaces: [Place]
-    
-    init(_ locationService: LocationService) {
-        self.currentLocation = Dynamic<CLLocation>(CLLocation(latitude: 0.0, longitude: 0.0))
-        self.currentPlaces = []
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(userLocationDidChange(_:)),
-                                               name: Notification.Name.didUpdateUserLocation,
-                                               object: locationService)
-    }
-    
-    func makeMarkersFromPlaces(_ places: [Place]) -> [PlaceMarker] {
-        self.currentPlaces = places
-        return places.map { PlaceMarker(place: $0) }
-    }
-    
-    @objc
-    private func userLocationDidChange(_ notification: Notification) {
-        if let newLocation = notification.userInfo?["location"] as? CLLocation {
-            currentLocation.value = newLocation
-        }
-    }
-}
 
 
 

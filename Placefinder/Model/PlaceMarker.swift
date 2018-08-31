@@ -25,28 +25,7 @@ class PlaceMarker: GMSMarker {
     }
 }
 
-struct Place {
-    let name: String
-    let coordinate: CLLocationCoordinate2D//(Double, Double)
-//    let iconUrl
-    let formattedAddress: String
-    let photoReference: String?
-}
 
-extension Place {
-    
-    init(fromGooglePlace placeDto: PlaceDto) {
-        
-        let placeCoordinate = CLLocationCoordinate2D(latitude: placeDto.geometry.location.lat, longitude: placeDto.geometry.location.lng)
-        
-        let photoUrl = placeDto.photos?.first?.photo_reference
-        
-        self.init(name: placeDto.name,
-                  coordinate: placeCoordinate,
-                  formattedAddress: placeDto.vicinity ?? "",
-                  photoReference: photoUrl)
-    }
-}
 
 
 
