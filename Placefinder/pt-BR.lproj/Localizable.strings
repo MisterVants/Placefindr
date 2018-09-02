@@ -6,9 +6,24 @@
   
 */
 
+// Error alerts
+"Location Services Disabled"            = "Serviços de Localização Desativados";
+"Location Denied"                       = "Uso de localização não está autorizado";
+"Unknown Location"                      = "Localização não determinada";
+"Nearby Request Failed"                 = "Falha ao tentar encontrar lugares por perto";
+"Place Id Request Failed"               = "Falha ao receber dados do lugar";
+"No Place Results"                      = "Nenhum lugar encontrado";
+
+"Location Disabled Description"         = "Para usar o aplicativo, ative os Serviços de Localização para o aparelho, por favor.";
+"Location Denied Description"           = "O aplicativo não está autorizado a usar sua localização.";
+"Unknown Location Description"          = "O aplicativo não pôde determinar sua localização.";
+"Nearby Request Failed Description"     = "Verifique sua conexão à internet e tente de novo mais tarde.";
+"Place Id Request Failed Description"   = "Verifique sua conexão à internet e tente de novo mais tarde.";
+"No Place Results Description"          = "Nenhum resultado de busca encontrado. Tente procurar por outro lugar.";
+
 
 // Google Place Types
-"airport"           = "Aeroporto";
+"airport"           = "Serviços Aéreos";
 "atm"               = "Caixa Eletrônico";
 "bar"               = "Bar";
 "cafe"              = "Café";

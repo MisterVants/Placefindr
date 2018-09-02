@@ -17,11 +17,10 @@ class PlaceMarker: GMSMarker {
         self.place = place
         super.init()
         
-        position = place.coordinate
+        position        = place.coordinate
+        title           = place.name
+        snippet         = place.formattedAddress
         appearAnimation = .pop
-        
-        title = place.name
-        snippet = place.formattedAddress
     }
 }
 

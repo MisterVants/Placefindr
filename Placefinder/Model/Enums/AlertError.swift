@@ -10,9 +10,10 @@ import Foundation
 protocol AlertError {
     var alertTitle: String {get}
     var alertMessage: String {get}
+    var identifier: String {get}
 }
 
-enum PlacefinderError: AlertError {
+enum PlacefinderError: String, AlertError {
     // Location related
     case locationServicesDisabled
     case locationDenied
@@ -21,6 +22,10 @@ enum PlacefinderError: AlertError {
     case nearbyPlaceRequestFailed
     case placeByIdRequestFailed
     case noResultsReturned
+    
+    var identifier: String {
+        return self.rawValue
+    }
     
     var alertTitle: String {
         switch self {

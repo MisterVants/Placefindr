@@ -10,8 +10,7 @@ import GooglePlaces
 struct Place {
     let name: String
     let placeId: String
-    let coordinate: CLLocationCoordinate2D//(Double, Double)
-    //    let iconUrl
+    let coordinate: CLLocationCoordinate2D
     let formattedAddress: String
     let photoReference: String?
 }
@@ -24,7 +23,7 @@ extension Place {
                   placeId: gmsPlace.placeID,
                   coordinate: gmsPlace.coordinate,
                   formattedAddress: gmsPlace.formattedAddress ?? "",
-                  photoReference: nil) // check this
+                  photoReference: nil)
     }
     
     init(fromGooglePlaceDto placeDto: PlaceDto) {

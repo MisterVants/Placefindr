@@ -8,7 +8,7 @@
 class AppServices {
     
     let locationService: LocationService
-    let googleDataProvider: GoogleDataProvider
+    let googleDataProvider: DataProvider
     
     init() {
         locationService = LocationManager()

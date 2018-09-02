@@ -6,10 +6,6 @@
 //
 
 import CoreLocation
-//
-//enum LocationNotification {
-//    static let UserLocationDidChange = "UserLocationDidChange"
-//}
 
 extension Notification.Name {
     static var didUpdateUserLocation: Notification.Name {
@@ -19,8 +15,13 @@ extension Notification.Name {
 
 protocol LocationService {
     var currentLocation: CLLocation? {get}
+    var isServiceEnabled: Bool {get}
+    var isAuthorized: Bool {get}
+    var isDenied: Bool {get}
     
-    func start()
+    func startLocationUpdates()
+    func stopLocationUpdates()
+    func requestUserAuthorization()
 }
 
 class LocationManager: NSObject, LocationService {
@@ -29,11 +30,29 @@ class LocationManager: NSObject, LocationService {
     
     var currentLocation: CLLocation? {
         didSet {
-            //change this later
             NotificationCenter.default.post(name: .didUpdateUserLocation,
                                             object: self,
                                             userInfo: ["location" : currentLocation as Any])
         }
+    }
+    
+    var isServiceEnabled: Bool {
+        return CLLocationManager.locationServicesEnabled() && authorizationStatus != .restricted
+    }
+    
+    var isAuthorized: Bool {
+        if (authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse) {
+            return true
+        }
+        return false
+    }
+    
+    var isDenied: Bool {
+        return authorizationStatus == .denied
+    }
+    
+    var authorizationStatus: CLAuthorizationStatus {
+        return CLLocationManager.authorizationStatus()
     }
     
     override init() {
@@ -44,75 +63,43 @@ class LocationManager: NSObject, LocationService {
         locationManager.delegate = self
     }
     
-    func start() {
+    func startLocationUpdates() {
+        if isAuthorized {
+            locationManager.startUpdatingLocation()
+        } else {
+            requestUserAuthorization()
+        }
+    }
+    
+    func stopLocationUpdates() {
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func requestUserAuthorization() {
         locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
     }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        currentLocation = locations.last!
-//        if cacheLocation {
-//            lastKnownLocation = currentLocation
-//        }
-//        //        let coordinate = newLocation.coordinate
-//        if updateOnceToken {
-//            stopLocationUpdates()
-//        }
         
         let lastLocation: CLLocation = locations.last!
         currentLocation = lastLocation
-        
-        
-        //        print("Location: \(location)")
-        
-        //        showMarker(position: location.coordinate)
-        
-//        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
-//                                              longitude: location.coordinate.longitude,
-//                                              zoom: mapView.camera.zoom)
-        //        let camera = GMSCameraPosition.ca
-        
-//        if mapView.isHidden {
-//            mapView.isHidden = false
-//            mapView.camera = camera
-//        } else {
-//            mapView.animate(to: camera)
-//        }
-//
-//        if likelyPlaces.isEmpty {
-//            listLikelyPlaces()
-//        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-//        currentLocation = nil
-        print("Error: \(error)")
+        currentLocation = nil
+        print("Location Manager did fail with Error: \(error)")
     }
     
-    //    func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
-    //
-    //    }
-    //
-    //    func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
-    //
-    //    }
-    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//        if status == .authorizedWhenInUse {
-//            //            locationManager.requestLocation() // Only in iOS 9
-////            startUpdatingLocation()
-//        }
-        
+
         switch status {
         case .restricted:
             print("Location access was restricted.")
         case .denied:
             print("User denied access to location.")
-            // Display the map using the default location.
-//            mapView.isHidden = false
         case .notDetermined:
             print("Location status not determined.")
         case .authorizedAlways: fallthrough

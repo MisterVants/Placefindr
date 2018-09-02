@@ -6,9 +6,24 @@
   
 */
 
+// Error alerts
+"Location Services Disabled"            = "Location Services Disabled";
+"Location Denied"                       = "Location Use Not Authorized";
+"Unknown Location"                      = "Unknown Location";
+"Nearby Request Failed"                 = "Failed to find nearby places";
+"Place Id Request Failed"               = "Failed to get place data";
+"No Place Results"                      = "No Places Found";
+
+"Location Disabled Description"         = "In order to use the App, please turn on the location services for the device.";
+"Location Denied Description"           = "The App is not authorized to use your location.";
+"Unknown Location Description"          = "The App could not determine your location.";
+"Nearby Request Failed Description"     = "Check your internet connection and try again later.";
+"Place Id Request Failed Description"   = "Check your internet connection and try again later.";
+"No Place Results Description"          = "No results were found. Try searching for another place.";
+
 
 // Google Place Types
-"airport"           = "Airport";
+"airport"           = "Air Services";
 "atm"               = "ATM";
 "bar"               = "Bar";
 "cafe"              = "Cafe";

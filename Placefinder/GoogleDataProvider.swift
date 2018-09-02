@@ -10,15 +10,29 @@ import CoreLocation
 import UIKit
 import Alamofire
 
-typealias PlacesCompletion = ([Place]) -> Void
 
-//enum GoogleApiParameter
-enum RankByParameter {
-    case prominence
-    case distance
+
+protocol DataProvider {
+    func fetchPlacesNearby(_ coordinate: CLLocationCoordinate2D,
+                            radius: Double,
+                            keyword: String?,
+                            type: GooglePlaceType?,
+                            rankByDistance: Bool,
+                            completion: @escaping ([Place]?) -> Void)
 }
 
-class GoogleDataProvider {
+extension DataProvider {
+    func fetchPlacesNearby(_ coordinate: CLLocationCoordinate2D,
+                           radius: Double = 1000.0,
+                           keyword: String? = nil,
+                           type: GooglePlaceType? = nil,
+                           rankByDistance: Bool = false,
+                           completion: @escaping ([Place]?) -> Void) {
+        return fetchPlacesNearby(coordinate, radius: radius, keyword: keyword, type: type, rankByDistance: rankByDistance, completion: completion)
+    }
+}
+
+class GoogleDataProvider: DataProvider {
     
     private enum QueryParameterKey: String {
         case location
@@ -66,95 +80,19 @@ class GoogleDataProvider {
                 let placeList = placesDtoList.map { Place(fromGooglePlaceDto: $0) }
                 completion(placeList)
             } else {
-                print("Error on response data")
+                print("Error on response data: \(String(describing: response.error?.localizedDescription))")
                 completion(nil)
             }
         }
     }
-    
-    
-    // Copy-Paste example without Alamofire (ugly but work)
-//    func fetchPlacesNearCoordinate(_ coordinate: CLLocationCoordinate2D, radius: Double, types: [String], completion: @escaping PlacesCompletion) -> Void {
-//        var urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(coordinate.latitude),\(coordinate.longitude)&radius=\(radius)&rankby=prominence&sensor=true&key=\(googleApiKey)"
-//        let typesString = types.count > 0 ? types.joined(separator: "|") : "bar"
-//        urlString += "&types=\(typesString)"
-//        urlString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? urlString
-//
-//        guard let url = URL(string: urlString) else {
-//            completion([])
-//            return
-//        }
-//
-//        if let task = placesTask, task.taskIdentifier > 0 && task.state == .running {
-//            task.cancel()
-//        }
-//
-//        DispatchQueue.main.async {
-//            UIApplication.shared.isNetworkActivityIndicatorVisible = true
-//        }
-//
-//        placesTask = session.dataTask(with: url) { data, response, error in
-//            var placesArray: [Place] = []
-//            defer {
-//                DispatchQueue.main.async {
-//                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-//                    completion(placesArray)
-//                }
-//            }
-////            guard let data = data,
-//////                try JSONDecoder().decode(<#T##type: Decodable.Protocol##Decodable.Protocol#>, from: <#T##Data#>)
-////                let jsonData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any],
-//////                let json = try? JSON(data: data, options: .mutableContainers),
-//////                let results = json["results"].arrayObject as? [[String: Any]]
-////                let results = jsonData?["results"] as? [String:Any]
-////            else {
-////                print("SOME ERROR HERE")
-////                return
-////            }
-//
-//            guard let data = data else {
-//                print("error: Data == nil")
-//                return
-//            }
-//            let jsonData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
-//            guard let json = jsonData as? [String:Any] else {
-//                print("error on json decode from data")
-//                return
-//            }
-////            print(jsonData)
-//            guard let results = json["results"] as? [[String:Any]] else {
-//                print(json)
-//                print("error on getting result dict from json")
-//                return
-//            }
-//
-//            for item in results {
-//                do {
-//                    let jdata = try JSONSerialization.data(withJSONObject: item, options: .prettyPrinted)
-////                    let place = try JSONDecoder().decode(Place.self, from: jdata)
-////                    let place = try JSONDecoder().dec
-////                    placesArray.append(place)
-//                } catch {
-//                    print(error)
-//                    return
-//                }
-//            }
-//            print(results.first)
-//            completion(placesArray)
-//
-//
-////            print(jsonData)
-//
-////            results.forEach {
-////                let place = GooglePlace(dictionary: $0, acceptedTypes: types)
-////                placesArray.append(place)
-////                if let reference = place.photoReference {
-////                    self.fetchPhotoFromReference(reference) { image in
-////                        place.photo = image
-////                    }
-////                }
-////            }
-//        }
-//        placesTask?.resume()
-//    }
 }
+
+
+
+
+
+
+
+
+
+

@@ -7,59 +7,69 @@
 
 import Foundation
 import GooglePlaces
-import GoogleMaps
 
 protocol SearchResultsViewModel {
     
+    var lastSearchText: Dynamic<String> {get}
     var updateTableResults: Action {get}
     var numberOfResultSections: Int {get}
     
-    func mapVisibleRegionDidChangeTo(_ visibleRegion: GMSVisibleRegion)
+    // Interaction
+    func mapVisibleRegionDidChangeTo(northEast: CLLocationCoordinate2D, southWest: CLLocationCoordinate2D)
     func updateSearchResults(partialString: String)
+    func didSelectRowAt(_ indexPath: IndexPath)
+    func didPressSearchButton(_ searchString: String)
+    
+    // Table View
+    func numberOfRowsInSection(_ section: Int) -> Int
     func cellTypeForIndexPath(_ indexPath: IndexPath) -> ResultTableSection?
     func placeSuggestionForRowAt(_ indexPath: IndexPath) -> GooglePlaceType
     func autocompletePredictionForRowAt(_ indexPath: IndexPath) -> GMSAutocompletePrediction
-    func numberOfRowsInSection(_ section: Int) -> Int
-    func didSelectRowAt(_ indexPath: IndexPath)
-    func didPressSearchButton(_ searchString: String)
+    
+    // Data reload
+    func blockResultTableReload()
+    func allowResultTableReload()
 }
 
 class SearchResultsViewModelImplementation: NSObject, SearchResultsViewModel {
     
     let fetcher: GMSAutocompleteFetcher
     
-    var updateTableResults: Action
+    var lastSearchText: Dynamic<String>
     
+    var updateTableResults: Action
     var searchNearbyByText: ValueAction<String>
     var searchNearbyByType: ValueAction<GooglePlaceType>
     var searchByPlaceId: ValueAction<String>
     
-    
-    // these both will be on autocomplete
     var suggestedPlacetypes: [GooglePlaceType]
     var autocompletePredictions: [GMSAutocompletePrediction]
+    
+    var shouldBlockResultTableReload: Bool
     
     var numberOfResultSections: Int {
         return ResultTableSection.count
     }
     
     override init() {
-        self.fetcher = GMSAutocompleteFetcher(bounds: nil, filter: nil)
-        
-        self.updateTableResults = Action()
-        self.searchNearbyByText = ValueAction<String>()
-        self.searchNearbyByType = ValueAction<GooglePlaceType>()
-        self.searchByPlaceId            = ValueAction<String>()
-        self.suggestedPlacetypes = []
-        self.autocompletePredictions = []
+        self.fetcher                        = GMSAutocompleteFetcher(bounds: nil, filter: nil)
+        self.lastSearchText                 = Dynamic<String>("")
+        self.updateTableResults             = Action()
+        self.searchNearbyByText             = ValueAction<String>()
+        self.searchNearbyByType             = ValueAction<GooglePlaceType>()
+        self.searchByPlaceId                = ValueAction<String>()
+        self.suggestedPlacetypes            = []
+        self.autocompletePredictions        = []
+        self.shouldBlockResultTableReload   = false
         super.init()
         
         self.fetcher.delegate = self
     }
     
-    func mapVisibleRegionDidChangeTo(_ visibleRegion: GMSVisibleRegion) {
-        let northEast = visibleRegion.farRight
-        let southWest = visibleRegion.nearLeft
+    
+    // MARK: - Interaction
+    
+    func mapVisibleRegionDidChangeTo(northEast: CLLocationCoordinate2D, southWest: CLLocationCoordinate2D) {
         let autocompleteBounds = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
         fetcher.autocompleteBounds = autocompleteBounds
     }
@@ -68,11 +78,55 @@ class SearchResultsViewModelImplementation: NSObject, SearchResultsViewModel {
         
         if partialString.isEmpty {
             suggestedPlacetypes = GooglePlaceType.allValues//likelyPlacetypes
+            
         } else {
             suggestedPlacetypes = GooglePlaceType.allValues.filter {
                 $0.localizedTitle.range(of: partialString, options: [.caseInsensitive, .diacriticInsensitive]) != nil
             }
-            fetcher.sourceTextHasChanged(partialString)
+        }
+        fetcher.sourceTextHasChanged(partialString)
+    }
+    
+    func didSelectRowAt(_ indexPath: IndexPath) {
+        guard let validSection = ResultTableSection(rawValue: indexPath.section) else {
+            print("[SearchResultsViewModel] Error @ \(#function): Selected and unidentified table section with index: \(indexPath.section)")
+            return
+        }
+        
+        switch validSection
+        {
+        case .placeType:
+            let selectedPlacetype = suggestedPlacetypes[indexPath.row]
+            searchNearbyByType.fire(selectedPlacetype)
+            lastSearchText.value = selectedPlacetype.localizedTitle
+        
+        case .autocompleteSuggestion:
+            let selectedPrediction = autocompletePredictions[indexPath.row]
+            searchByPlaceId.fire(selectedPrediction.placeID ?? "")
+            lastSearchText.value = selectedPrediction.attributedPrimaryText.string
+        }
+    }
+    
+    func didPressSearchButton(_ searchString: String) {
+        searchNearbyByText.fire(searchString)
+        lastSearchText.value = searchString
+    }
+    
+    
+    // MARK: - Table View Delegate and Data Source
+    
+    func numberOfRowsInSection(_ section: Int) -> Int {
+        
+        guard let validSection = ResultTableSection(rawValue: section) else {
+            print("[SearchResultsViewModel] Error @ \(#function): Unidentified table section with index: \(section)")
+            return 0
+        }
+        
+        switch validSection {
+        case .placeType:
+            return suggestedPlacetypes.count
+        case .autocompleteSuggestion:
+            return autocompletePredictions.count
         }
     }
     
@@ -93,58 +147,46 @@ class SearchResultsViewModelImplementation: NSObject, SearchResultsViewModel {
         return autocompletePredictions[indexPath.row]
     }
     
-    func numberOfRowsInSection(_ section: Int) -> Int {
-        
-        guard let validSection = ResultTableSection(rawValue: section) else {
-            print("[SearchResultsViewModel] Error @ \(#function): Unidentified table section with index: \(section)")
-            return 0
-        }
-        
-        switch validSection {
-        case .placeType:
-            return suggestedPlacetypes.count
-        case .autocompleteSuggestion:
-            return autocompletePredictions.count
-        }
+    
+    // MARK: - Table Data Reload
+    
+    func blockResultTableReload() {
+        shouldBlockResultTableReload = true
     }
     
-    func didSelectRowAt(_ indexPath: IndexPath) {
-        print("Selected row at \(indexPath)")
-        
-        guard let validSection = ResultTableSection(rawValue: indexPath.section) else {
-            print("[SearchResultsViewModel] Error @ \(#function): Selected and unidentified table section with index: \(indexPath.section)")
-            return
-        }
-        
-        switch validSection {
-        case .placeType:
-            searchNearbyByType.fire(suggestedPlacetypes[indexPath.row])
-        case .autocompleteSuggestion:
-            searchByPlaceId.fire(autocompletePredictions[indexPath.row].placeID ?? "")
-        }
-    }
-    
-    func didPressSearchButton(_ searchString: String) {
-        searchNearbyByText.fire(searchString)
+    func allowResultTableReload() {
+        shouldBlockResultTableReload = false
     }
 }
+
+
+// MARK: - Autocomple for Google query
 
 extension SearchResultsViewModelImplementation: GMSAutocompleteFetcherDelegate {
     
     func didAutocomplete(with predictions: [GMSAutocompletePrediction]) {
         autocompletePredictions = predictions
-        updateTableResults.fire()
+        if !shouldBlockResultTableReload {
+            updateTableResults.fire()
+        }
     }
     
     func didFailAutocompleteWithError(_ error: Error) {
-        print("Autocomplete Error: \(error)")
+        autocompletePredictions.removeAll(keepingCapacity: true)
+        if !shouldBlockResultTableReload {
+            updateTableResults.fire()
+        }
+        print("Autocomplete Error: \(error.localizedDescription)")
     }
 }
+
+
+// MARK: - Results Table Section Types
 
 enum ResultTableSection: Int {
     case placeType
     case autocompleteSuggestion
-    // Add more cases if needed for e.g. History or Bookmarks
+    // Add more cases as needed: e.g. History or Bookmarks
     
     // Only needed to automatically count all cases in enum. In Swift 4.2, make CaseIterable and use the synthesized property
     static var allValues: [ResultTableSection] {

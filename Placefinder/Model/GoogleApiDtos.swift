@@ -5,7 +5,6 @@
 //  Created by André Vants Soares de Almeida on 30/08/18.
 //
 
-//import Foundation
 import CoreLocation
 
 struct NearbyPlacesDto: Decodable {
@@ -13,8 +12,8 @@ struct NearbyPlacesDto: Decodable {
     let status: String
 }
 
-// nearby search and text search
-//A Text Search response is similar, except that it returns a formatted_address instead of a vicinity property.
+// Nearby search and text search
+// A pure Text Search response is similar, except that it returns a formatted_address instead of a vicinity property. -> Pure text search not used
 struct PlaceDto: Decodable {
     let geometry: GeometryDto
     let icon: String
@@ -30,10 +29,6 @@ struct PlaceDto: Decodable {
     let vicinity: String?
     
     var coordinate: CLLocationCoordinate2D {
-        //        guard let lat = geometry.location.lat, let lon = geometry.location.lng else {
-        //            return nil
-        //        }
-        //        return CLLocationCoordinate2D(latitude: lat, longitude: lon)
         return CLLocationCoordinate2D(latitude: geometry.location.lat, longitude: geometry.location.lng)
     }
 }
