@@ -13,6 +13,7 @@ class SearchResultsTableViewController: UITableViewController {
     
     var lastQueryString: String = ""
     
+    private let cellHeight: CGFloat = 64.0
     
     // MARK: - Initialization
     
@@ -61,7 +62,7 @@ class SearchResultsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50 // not done yet
+        return cellHeight
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

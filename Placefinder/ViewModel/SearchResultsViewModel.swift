@@ -77,8 +77,7 @@ class SearchResultsViewModelImplementation: NSObject, SearchResultsViewModel {
     func updateSearchResults(partialString: String) {
         
         if partialString.isEmpty {
-            suggestedPlacetypes = GooglePlaceType.allValues//likelyPlacetypes
-            
+            suggestedPlacetypes = GooglePlaceType.allValues.sorted { $0.localizedTitle < $1.localizedTitle }
         } else {
             suggestedPlacetypes = GooglePlaceType.allValues.filter {
                 $0.localizedTitle.range(of: partialString, options: [.caseInsensitive, .diacriticInsensitive]) != nil

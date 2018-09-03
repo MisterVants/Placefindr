@@ -15,6 +15,14 @@
 		7631F88A213C346600D1AA29 /* MapViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7631F889213C346600D1AA29 /* MapViewModelTests.swift */; };
 		7631F88C213C580600D1AA29 /* MapModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7631F88B213C580600D1AA29 /* MapModelTests.swift */; };
 		7631F88E213C5BF400D1AA29 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7631F88D213C5BF400D1AA29 /* Navigator.swift */; };
+		7631F891213C987B00D1AA29 /* app-logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7631F88F213C987B00D1AA29 /* app-logo@3x.png */; };
+		7631F892213C987B00D1AA29 /* app-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7631F890213C987B00D1AA29 /* app-logo@2x.png */; };
+		7631F895213CA30D00D1AA29 /* app-logo-small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7631F893213CA30C00D1AA29 /* app-logo-small@3x.png */; };
+		7631F896213CA30D00D1AA29 /* app-logo-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7631F894213CA30C00D1AA29 /* app-logo-small@2x.png */; };
+		7631F898213CABFF00D1AA29 /* UIFont+AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7631F897213CABFF00D1AA29 /* UIFont+AppFonts.swift */; };
+		7631F89F213CAE6A00D1AA29 /* icon-place-36@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7631F89D213CAE6A00D1AA29 /* icon-place-36@2x.png */; };
+		7631F8A0213CAE6A00D1AA29 /* icon-place-36@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7631F89E213CAE6A00D1AA29 /* icon-place-36@3x.png */; };
+		7631F8A3213CB5A100D1AA29 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7631F8A2213CB5A100D1AA29 /* Roboto-Regular.ttf */; };
 		76449D5D213ACDEE00DB7F15 /* SearchResultsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76449D5C213ACDEE00DB7F15 /* SearchResultsViewModelTests.swift */; };
 		76449D5F213AE4C000DB7F15 /* AlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76449D5E213AE4C000DB7F15 /* AlertError.swift */; };
 		76449D61213B1B2400DB7F15 /* LocationServiceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76449D60213B1B2400DB7F15 /* LocationServiceStatus.swift */; };
@@ -97,6 +105,14 @@
 		7631F889213C346600D1AA29 /* MapViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModelTests.swift; sourceTree = "<group>"; };
 		7631F88B213C580600D1AA29 /* MapModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModelTests.swift; sourceTree = "<group>"; };
 		7631F88D213C5BF400D1AA29 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		7631F88F213C987B00D1AA29 /* app-logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-logo@3x.png"; sourceTree = "<group>"; };
+		7631F890213C987B00D1AA29 /* app-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-logo@2x.png"; sourceTree = "<group>"; };
+		7631F893213CA30C00D1AA29 /* app-logo-small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-logo-small@3x.png"; sourceTree = "<group>"; };
+		7631F894213CA30C00D1AA29 /* app-logo-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-logo-small@2x.png"; sourceTree = "<group>"; };
+		7631F897213CABFF00D1AA29 /* UIFont+AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+AppFonts.swift"; sourceTree = "<group>"; };
+		7631F89D213CAE6A00D1AA29 /* icon-place-36@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-place-36@2x.png"; sourceTree = "<group>"; };
+		7631F89E213CAE6A00D1AA29 /* icon-place-36@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-place-36@3x.png"; sourceTree = "<group>"; };
+		7631F8A2213CB5A100D1AA29 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		76449D5C213ACDEE00DB7F15 /* SearchResultsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchResultsViewModelTests.swift; path = /Users/AndreVants/Developer/Placefinder/PlacefinderTests/SearchResultsViewModelTests.swift; sourceTree = "<absolute>"; };
 		76449D5E213AE4C000DB7F15 /* AlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertError.swift; sourceTree = "<group>"; };
 		76449D60213B1B2400DB7F15 /* LocationServiceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceStatus.swift; sourceTree = "<group>"; };
@@ -241,6 +257,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		7631F8A1213CB58E00D1AA29 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7631F8A2213CB5A100D1AA29 /* Roboto-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		76449D62213B1B3900DB7F15 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +311,7 @@
 				7660DD782139627C00EFD1C4 /* Localizable.strings */,
 				765F60A3213471D100160F13 /* Assets.xcassets */,
 				7660DD7E2139818700EFD1C4 /* Images */,
+				7631F8A1213CB58E00D1AA29 /* Fonts */,
 				765F60A5213471D100160F13 /* LaunchScreen.storyboard */,
 				765F60A8213471D100160F13 /* Info.plist */,
 				769B2C412134777E00151D69 /* Placefinder-Bridging-Header.h */,
@@ -310,6 +335,12 @@
 		7660DD7E2139818700EFD1C4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7631F890213C987B00D1AA29 /* app-logo@2x.png */,
+				7631F88F213C987B00D1AA29 /* app-logo@3x.png */,
+				7631F894213CA30C00D1AA29 /* app-logo-small@2x.png */,
+				7631F893213CA30C00D1AA29 /* app-logo-small@3x.png */,
+				7631F89D213CAE6A00D1AA29 /* icon-place-36@2x.png */,
+				7631F89E213CAE6A00D1AA29 /* icon-place-36@3x.png */,
 				7660DD8D213989FE00EFD1C4 /* icon-airport-24@2x.png */,
 				7660DD8C213989FE00EFD1C4 /* icon-airport-24@3x.png */,
 				7660DD852139825000EFD1C4 /* icon-grocery-24@2x.png */,
@@ -353,6 +384,7 @@
 			children = (
 				769B122A213614D0006D4BA7 /* UIViewController+Extension.swift */,
 				7660DDD52139A4F600EFD1C4 /* UIImage+Extension.swift */,
+				7631F897213CABFF00D1AA29 /* UIFont+AppFonts.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -457,9 +489,12 @@
 			files = (
 				7660DDBB21398AC900EFD1C4 /* icon-parking-24@2x.png in Resources */,
 				7660DD8F213989FE00EFD1C4 /* icon-airport-24@2x.png in Resources */,
+				7631F8A0213CAE6A00D1AA29 /* icon-place-36@3x.png in Resources */,
 				7660DDC521398AC900EFD1C4 /* icon-pharmacy-24@3x.png in Resources */,
+				7631F892213C987B00D1AA29 /* app-logo@2x.png in Resources */,
 				7660DDBF21398AC900EFD1C4 /* icon-florist-24@2x.png in Resources */,
 				7660DDCA21398AC900EFD1C4 /* icon-taxi-24@2x.png in Resources */,
+				7631F89F213CAE6A00D1AA29 /* icon-place-36@2x.png in Resources */,
 				7660DDB921398AC900EFD1C4 /* icon-parking-24@3x.png in Resources */,
 				7660DDBC21398AC900EFD1C4 /* icon-atm-24@2x.png in Resources */,
 				7660DDC121398AC900EFD1C4 /* icon-laundry-24@2x.png in Resources */,
@@ -469,7 +504,9 @@
 				765F60A7213471D100160F13 /* LaunchScreen.storyboard in Resources */,
 				7660DDB321398AC900EFD1C4 /* icon-subway-24@2x.png in Resources */,
 				7660DD762139627C00EFD1C4 /* Localizable.strings in Resources */,
+				7631F8A3213CB5A100D1AA29 /* Roboto-Regular.ttf in Resources */,
 				7660DDC821398AC900EFD1C4 /* icon-restaurant-24@2x.png in Resources */,
+				7631F895213CA30D00D1AA29 /* app-logo-small@3x.png in Resources */,
 				7660DDB121398AC900EFD1C4 /* icon-subway-24@3x.png in Resources */,
 				7660DDAE21398AC900EFD1C4 /* icon-pharmacy-24@2x.png in Resources */,
 				7660DDB521398AC900EFD1C4 /* icon-atm-24@3x.png in Resources */,
@@ -479,8 +516,10 @@
 				7660DDC321398AC900EFD1C4 /* icon-movies-24@2x.png in Resources */,
 				7660DDB721398AC900EFD1C4 /* icon-hospital-24@3x.png in Resources */,
 				7660DDC621398AC900EFD1C4 /* icon-gas_station-24@2x.png in Resources */,
+				7631F896213CA30D00D1AA29 /* app-logo-small@2x.png in Resources */,
 				7660DDBA21398AC900EFD1C4 /* icon-bar-24@2x.png in Resources */,
 				7660DDBE21398AC900EFD1C4 /* icon-cafe-24@2x.png in Resources */,
+				7631F891213C987B00D1AA29 /* app-logo@3x.png in Resources */,
 				7660DDD22139956E00EFD1C4 /* icon-gym-24@2x.png in Resources */,
 				765F60A4213471D100160F13 /* Assets.xcassets in Resources */,
 				7660DDC021398AC900EFD1C4 /* icon-gas_station-24@3x.png in Resources */,
@@ -599,6 +638,7 @@
 				76C7E3C92138729C0014E06F /* ValueAction.swift in Sources */,
 				7660DDDC2139D85300EFD1C4 /* Place.swift in Sources */,
 				76C7E3C7213872940014E06F /* DynamicValue.swift in Sources */,
+				7631F898213CABFF00D1AA29 /* UIFont+AppFonts.swift in Sources */,
 				7607B02521356B4A0084350A /* GoogleDataProvider.swift in Sources */,
 				76C2CA512136B54A0017D6F3 /* SearchResultsTableViewController.swift in Sources */,
 				7660DDDA2139B77B00EFD1C4 /* GoogleZoomLevel.swift in Sources */,

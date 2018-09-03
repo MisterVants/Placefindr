@@ -142,13 +142,13 @@ extension GooglePlaceType {
                 .taxi_stand]
     }
     
-    static var likelyPlacetypes: [GooglePlaceType] {
-        return [.pharmacy,
-                .supermarket,
-                .hospital,
-                .florist,
-                .post_office]
-    }
+//    static var likelyPlacetypes: [GooglePlaceType] {
+//        return [.pharmacy,
+//                .supermarket,
+//                .hospital,
+//                .florist,
+//                .post_office]
+//    }
 }
 
 

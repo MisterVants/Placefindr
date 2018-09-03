@@ -9,6 +9,10 @@ import UIKit
 
 extension UIImage {
     
+    static func appLogoNavBar() -> UIImage {
+        return UIImage(named: "app-logo-small")!
+    }
+    
     static func iconImage(_ identifier: String, size: Int) -> UIImage? {
         let filename = "icon-\(identifier)-\(size)"
         return UIImage(named: filename)

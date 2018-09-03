@@ -48,7 +48,9 @@ class MapViewController: UIViewController {
         searchController.searchBar.delegate                     = resultsViewController
         searchController.delegate                               = self
         
-        self.navigationItem.title                               = "Placefinder"
+        let navBarImageView                                     = UIImageView(image: UIImage.appLogoNavBar())
+        navBarImageView.contentMode                             = .scaleAspectFit
+        self.navigationItem.titleView                           = navBarImageView
         self.navigationItem.searchController                    = searchController
         self.navigationController?.navigationBar.isTranslucent  = true
         self.definesPresentationContext                         = true

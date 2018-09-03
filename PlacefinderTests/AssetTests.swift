@@ -18,6 +18,12 @@ class AssetTests: XCTestCase {
             let icon = UIImage.iconImage(type.iconIdentifier, size: 24)
             XCTAssertNotNil(icon)
         }
+        
+        let placeIcon = UIImage.iconImage("place", size: 36)
+        XCTAssertNotNil(placeIcon)
+        
+        let logo = UIImage.appLogoNavBar()
+        XCTAssertNotNil(logo)
     }
 }
 
